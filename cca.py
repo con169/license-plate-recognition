@@ -8,3 +8,17 @@ import localization
 label_image = measure.label(localization.binary_car_image)
 fig, (ax1) = plt.subplots(1)
 ax1.imshow(localization.gray_car_image, cmap="gray")
+
+# regionprops creates a list of properties of all the labelled regions
+for region in regionprops(label_image):
+    if region.area < 50:
+        # if region is small then likely not a license plate
+        continue
+
+    # bounding coordinates
+    minRow, minCol, maxRow, maxCol = region.bbox
+    rectBorder = patches.Rectangle((minCol, minRow), maxCol-minCol, maxRow-minRow, 
+                                   edgecolor="red", linewidth=2, fill=False)
+    ax1.add_patch(rectBorder)
+
+plt.show()
