@@ -24,5 +24,16 @@ for region in regionprops(label_image):
     min_row, min_col, max_row, max_col = region.bbox
     region_height = max_row - min_row
     region_width = max_col - min_col
+    # ensure regions identified align with our typical license conditions
+    if ( region_height >= min_height and region_height <= max_height 
+        and region_width >= min_width and region_width <= max_width 
+        and region_width > region_height ):
 
+        plate_like_objects.append(localization.binary_car_image[min_row:max_row, min_col:max_col])
+        plate_objects_coordinates.append((min_row, min_col, max_row, max_col))
+        rectBorder = patches.Rectangle((min_col, min_row), max_col-min_col, max_row-min_row,
+                                       edgecolor="red", linewidth=2, fill=False)
+        ax1.add_patch(rectBorder)
+
+plt.show()
     
