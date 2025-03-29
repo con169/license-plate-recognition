@@ -7,8 +7,8 @@ from skimage.io import imread
 from skimage.filters import threshold_otsu
 
 letters = [
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-            'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 
+            'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 ]
 
 def read_training_data(training_directory):
@@ -44,7 +44,7 @@ def cross_validation(model, num_of_fold, train_data, train_label):
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
 
-training_dataset_dir = os.path.join(current_dir, 'train')
+training_dataset_dir = os.path.join(current_dir, 'training_data/train20X20')
 
 image_data, target_data = read_training_data(training_dataset_dir)
 
